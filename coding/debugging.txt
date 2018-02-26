@@ -1,0 +1,22 @@
+1.	c++ -std=c++11 -g program.cpp
+
+
+2.	gdb a.out
+
+
+3.	b main / b 89 ( line number )
+
+
+4.	n	(next)
+
+
+6.	s 	( step into )
+
+
+7. 	cntrl + x + a 	( provides source program )
+
+
+8.	enter		( previous command )
+
+
+9.	p var		( print var )

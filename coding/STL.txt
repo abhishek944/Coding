@@ -1,0 +1,180 @@
+	
+queue < type > q;
+
+1. q.push(element)
+2. q.pop()	
+3. q.front()    
+4. q.back()
+5. q.empty()	(!)
+6. q.size()
+7. q.swap(q2)
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+stack <int> sk;
+
+1. sk.empty()	(!)
+2. sk.pop()
+3. sk.push(element)
+4. sk.top()
+5. sk.size()
+6. sk.swap(sk2)
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+priority_queue < type , vector < type > , cmp > pq;
+
+// cmp :		//opposite
+struct cmp {
+	bool operator()(const type &aa,const type &bb) {
+		return aa.ff < b.ff;
+	}
+}; 
+	
+1. pq.push(element)
+2. pq.pop()
+3. pq.top()
+4. pq.empty()		(!)
+5. pq.size()
+6. pq.swap(pq2)
+
+	//for more information:
+			http://www.technical-recipes.com/2011/priority-queues-and-min-priority-queues-in-c/
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+string s;
+
+1. operator " + "
+2. operator " = "
+3. operator " [] "
+4. s.size()
+5. s.substr(pos) 	s.substr(pos,length)
+6. s.swap(s2)
+7. s.find(string) s.find(string,pos)	//use size_t
+	//0-based indexing // k!=string::npos
+8. s.replace(pos,len,string)
+9. we can sort a string
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+vector < type > vi;
+
+1. vi.assign(val,no.of)   vi.assign(it first,it last)     	vi.assign(arr , arr+N)
+2. vi.clear()
+3. vi.empty() 	(!)
+4. vi.push_back()
+5. vi.pop_back()
+6. vi.erase(it)  vi.erase(it first,it last)
+7. vi.front()
+8. vi.back()
+9. vi.insert(it pos,val,no.of) vi.insert(it pos,it first,itlast)
+	vi.insert(it pos,arr, arr+N)
+10. operator " = " ( vector1 = vector2 ) 
+11. operator " [] " (vi[i])
+12. vi.begin() 		vector<typ>::iterator it
+13. vi.end()	(!)
+14. vi.rbegin()		vector<typ>::reverse_iterator it
+15. vi.rend()
+16. vi.size()
+17. vi.swap(vii)
+18. lower_bound(vi.begin(),vi.end(),element)
+19. upper_bound(vi.begin(),vi.end(),element)
+
+// comparision :
+
+bool cmp(type aa,type bb)
+{
+	return aa.ff < bb.ff;		//direct
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+map < key , value > mp;	//different elements
+multimap < key , value > mmp;	//same elements
+unordered_map < key , value > u_mp;
+unordered_multimap < key , value > um_mp;
+
+1. operator " = "
+2. operator " [] "
+3. mp.begin()
+4. mp.end()	// same to rbegin() and rend()
+5. mp.insert(element)
+6. mp.empty()	(!)
+7. mp.size()
+8. mp.erase(it)		mp.erase(it first,it last)
+9. mp.clear()
+10. mp.count(element)
+11. mp.find(element)	// != mp.end()
+12. mp.lower_bound(element)		// returns iterators
+13. mp.upper_bound(element)
+14. mp.swap(mp2)
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+set < type , cmp > st;
+multiset < type , cmp > mst;
+unordered_set < type , cmp > u_st;
+unordered_multiset < type , cmp > um_st;
+
+1. st.begin()
+2. st.end()	(!)
+3. st.size()
+4. st.empty()
+5. st.find()	// != st.end()
+6. st.insert(type)
+7. st.erase(it) 		st.erase(it first,it last)
+8. st.lower_bound(element)
+9. st.upper_bound(element)
+10 st.swap(st2)
+11. st.clear()
+12. st.count(element)
+
+// cmp :
+	struct cmp {
+    		bool operator()(const int &aa, const int &bb) {
+        		return aa < bb;
+   	 	}
+	};
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+deque < type > dq;
+
+1. operator " = "
+2. operator " [] "
+3. dq.clear()
+4. dq.size()
+5. dq.begin()
+6. dq.end()
+7. dq.erase(it) 		dq.erase(it first,it last)
+8. dq.push_back(element)
+9. dq.pop_back()
+10. dq.push_front(element)
+11. dq.pop_front()
+12. dq.empty()
+13. dq.back()
+14. dq.front()
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+IMP:
+	1. stoi(string)		//string to integer
+	2. to_string(integer)	// integer to string
+	3. // normal :
+		fill(a,0);
+		fill(a,-1);
+		fill(a,0x3f); //INF
+	4. //bool :
+		fill(a,0);
+		fill(a,1);
+	5. 	set_intersection(first.begin(),first.end(),second.begin(),second.end(),inserter(ans,ans.begin()));
+	6. // erase from back
+	minheap.erase(--minheap.end()); // c++ 4.3.2
+	minheap.erase(std::prev(minheap.end())); // c++11
+	7. setbase , setfill , setw , setprecision
+	8. //sleep std::this_thread::sleep_for (std::chrono::seconds(1));
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+

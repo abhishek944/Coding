@@ -1,0 +1,375 @@
+
+//BOX MODELS:
+
+int dx[]={0,0,1,-1};
+int dy[]={1,-1,0,0};
+
+//int dx[]={0,0,1,-1,1,1,-1,-1};
+//int dy[]={1,-1,0,0,-1,1,-1,1};
+
+ll n,m;
+char a[10][10];
+bool ok[10][10]={0};
+
+void dfs(int x,int y)
+{
+	if((x<0) or (y<0) or (x>=n) or (y>=m) or (a[x][y]=='#') or (ok[x][y])) return;
+	
+	ok[x][y]=1;
+	for(int i=0;i<4;i++)	
+	{
+		ll by1=x+dx[i];
+		ll by2=y+dy[i];
+
+		dfs(by1,by2);
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+//BASIC LINKING : (UNION FIND - 1,2) 			// cycle test
+
+int c;									
+int Rank[N];
+int parent[N];
+
+int assign(int m) { 									//path-compression 
+    if(parent[m]==m) return m;
+    return parent[m]=assign(parent[m]);
+}
+void Merge(int x,int y) {								// Union-find
+	int xroot=assign(x);
+	int yroot=assign(y);
+	if(xroot!=yroot) {
+		c--;											// no of components
+		if(Rank[xroot] < Rank[yroot])	parent[xroot]=yroot;
+		else if(Rank[xroot] > Rank[yroot]) parent[yroot]=xroot;
+		else {
+			Rank[xroot]++;
+			parent[yroot]=xroot;
+		}
+	}
+}
+
+int main()
+{
+	for(int i=0;i<=n;i++) parent[i]=i;
+	c=n;
+	for(int i=0;i<n;i++) {
+		int x,y;
+		sc(x); sc(y);
+		Merge(x,y);
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+/* DFS */
+
+bool ok[20];
+vector <int> a[20];
+vector <int> num;
+
+void dfs(int x)
+{
+	ok[x]=1;
+	pf(x); ps;
+
+	int k=a[x].sz;
+	for(int i=0;i<k;i++)
+	{
+		if(ok[a[x][i]]==0)
+		dfs(a[x][i]);
+	}
+}
+	
+int main()
+{
+	int n;
+	sc(n);
+
+	for(ll i=0;i<n;i++)
+	{
+		ll x,y;
+		sc(x); sc(y);
+
+		num.pb(x);
+		num.pb(y);
+
+		a[x].pb(y);
+		a[y].pb(x);
+	}
+
+	ll k=num.sz;
+
+	for(ll i=0;i<k;i++)
+	{
+		if(ok[num[i]]==0)
+		{
+			dfs(num[i]);
+			pn;
+		}
+	}
+
+	return 0;			
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+// BFS containing distance of nodes //
+
+vector <int> vi[N+1];
+int dist[N+1],n1;
+
+int bfs(int n)
+{
+	queue <int> qe;
+	fill(dist,-1);
+
+	qe.push(n);
+	dist[n]=0;
+
+	while(!qe.empty())
+	{	
+		int by=qe.front(); qe.pop();
+		int ln=vi[by].sz;
+		for(int i=0;i<ln;i++)
+		{
+			if(dist[vi[by][i]]==-1)
+			{
+				qe.push(vi[by][i]);
+				dist[vi[by][i]]=dist[by]+1;
+			}
+		}
+	}
+}
+
+int main()
+{
+	sc(n1); // nodes
+
+	int by=n1-1; //edges
+	for(int i=0;i<by;i++)
+	{
+		int u,v;
+		sc(u); sc(v);
+
+		vi[u-1].pb(v-1);
+		vi[v-1].pb(u-1);
+	}
+	
+	// call bfs
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+/*DIJSKTRA ALGO */
+
+vector <pii> V[10];
+int N,E;
+int dist[20];
+
+struct cmp
+{  
+	bool operator()(const pii &x, const pii &y) // in case of pairs (const  pair<int,int> &l ,...)
+  	{  
+  		return x.ss > y.ss;				// return l.ff/l.ss < r.ff/r.ss  
+ 	}  
+};
+
+int djs(int source,int target)
+{
+	priority_queue  <pii,vector<pii>,cmp> pq;
+	fill(dist,0x3f);		// assigning 	INF for every node in distance array
+	dist[source]=0;			// source at 0
+	pq.push(mp(source,0));		// edge-weight
+	
+	while(!pq.empty())
+	{
+		int u,v,w,c;
+		u=pq.top().ff;
+		c=pq.top().ss;		// node cost so far
+		pq.pop();
+
+		if(u == target) return dist[u]; 
+		if(dist[u] < c)	continue;	// already visited and hav min value than current - continue
+	
+		for(int i=0;i<V[u].sz;i++)
+		{
+			v=V[u][i].ff;
+			w=V[u][i].ss;
+		
+			if(dist[v] > dist[u]+w)
+			{
+				dist[v]=dist[u]+w;
+				pq.push(mp(v,dist[v]));
+			}
+		}
+	}
+	return -1;
+}
+
+int main()
+{
+	int t;
+	sc(t);
+	while(t--) 
+	{
+		sc(N); sc(E);
+		for(int i=0;i<E;i++)
+		{
+			int u,v,w;
+			sc(u); sc(v); sc(w);
+	
+			V[u].pb(mp(v,w)); //directed graph 	// edge-weight
+		}
+	
+		int start,end;
+		sc(start); sc(end); // start == source
+
+		int ans=djs(start,end);
+
+		if(ans == -1)
+		{
+			cout << "NO" << endl;
+			return 0;
+		}
+		pf(ans);
+		pn;
+	
+		for(int i=0;i<=N+1;i++)
+		V[i].clear();
+	}
+
+	return 0;
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+/* KRUSKAL MINIMUM SPANNING TREE */
+
+int a[20];
+vector < pair <int,pii> > V;
+
+int assign(int m) {							//path-compression included :D
+    if(a[m]==m) return m;
+    else return a[m]=assign(a[m]);
+}
+
+int main()
+{
+	int n,e;
+	sc(n); sc(e);
+	for(int i=0;i<=n+2;i++)
+	a[i]=i;
+	for(int i=0;i<e;i++)
+	{
+		int u,v,w;
+		sc(u); sc(v); sc(w);
+		V.pb(mp(w,mp(u,v))); 	// weight-edge format 	// for mst 	// for vector sorting
+	}
+	sort(V.begin(),V.end());
+	ll mst=0;
+	//for(innt i to V.size())
+	{
+		int by1=assign(V[i].ss.ff);
+		int by2=assign(V[i].ss.ss);
+		if(by1!=by2)		// no cycle
+		{
+			a[by1]=by2;
+			mst+=V[i].ff;
+		}
+	}
+
+	pf(mst);
+	pn;
+	return 0;
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+// articulation points and bridges
+
+class Arti_bridges {
+public:
+    int dis[N+1];
+    int low[N+1];
+    int pt[N+1];        //parent
+    bool ok[N+1];        //visited
+    bool vs[N+1];
+    int node_sz,edge_sz;
+    int tt;         //timeer
+    std::vector<int> apts;
+    std::vector<pii> bridges;
+    std::map<pii, int> ped;     //parallel edges handling
+
+    void init(int nd,int ed) {
+        fill(ok,0); 
+        fill(pt,-1); 
+        fill(vs,0);
+        apts.clear();   
+        bridges.clear();
+        ped.clear();
+        tt = 0;
+        this->node_sz = nd;
+        this->edge_sz = ed;
+    }
+
+    void dfs() {
+        for(int i=1;i<=node_sz;i++) {
+            if(!ok[i]) {
+                get_dfs(i);
+            }
+        }
+    }
+
+    void get_dfs(int u) {
+        int chd = 0;
+        dis[u] = low[u] = ++tt;
+        ok[u] = 1;
+        for(int i=0;i<vi[u].sz;i++) {
+            int v = vi[u][i];
+            if(!ok[v]) {
+                chd++;
+                pt[v] = u;
+                get_dfs(v);
+                low[u] = min(low[u],low[v]);
+                if((pt[u]==-1 && chd > 1) || (pt[u]!=-1 && low[v] >= dis[u])) vs[u] = 1;
+            }
+            else if(v!=pt[u]) low[u] = min(low[u],dis[v]);
+        }
+    }
+
+    void get_pts() {
+        for(int i=1;i<=node_sz;i++) if(vs[i]) apts.pb(i);
+    }
+
+    void get_bridges() {
+        for(int i=0;i<edges.sz;i++) {
+            int u = edges[i].ff , v = edges[i].ss;
+            if((low[u] > dis[v]) || (low[v] > dis[u])) ped[pii(min(u,v),max(u,v))]++;
+        }
+        forall(it,ped) {
+            if(it->ss > 1) continue;
+            bridges.pb(pii(it->ff.ff,it->ff.ss));
+        }
+    }
+
+    void print_it() {
+        cout << "Articulation points -->" << endl;
+        for(int i=0;i<apts.sz;i++) pf(apts[i]) , ps; pn;
+        cout << "Bridges -->" << endl;
+        for(int i=0;i<bridges.sz;i++) pf(bridges[i].ff), ps , pf(bridges[i].ss) , pn;
+    }
+
+};
+
+void clear_it(int nodes) {
+    edges.clear();
+    for(int i=0;i<=nodes;i++) vi[i].clear();
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+

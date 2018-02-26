@@ -1,0 +1,78 @@
+1 -> 	[ powers of a number n ]						complexity - O(n)				
+	
+	dpn[0] = 1
+	for(int i=1;dpn[i-1]<=ll((1e+18)+5);i++) dpn[i] = n*dpn[i-1];
+
+
+2 ->	[ next permutation of string ]						complexity - O(n!)
+	
+	sort(s.begin(),s.end());
+	while(next_permutation(s.begin() , s.end())) cout << s << endl;
+
+
+3 ->	[ max subarray sum ] [ kadane algorithm ] 				complexity - O(n)
+	
+	int max1 = -INF , by = 0;
+	bool flag = 0;
+	FOR(i , 0 , n) if(a[i] >= 0) flag = 1;
+	if(flag) FOR(i ,0 , n) max1 = max(max1 , a[i]);
+	else {
+		FOR(i, 0 , n) {
+			by += a[i]; if(by < 0) by = 0;
+			max1 = max(max1 , by);
+		}
+	}
+	cout << max1 << endl;
+
+
+4 -> 	[ max subrectangle sum ] [ 2-D kadane algo ]				complexity - O(n^3) // n^2logn is available // learn it
+	
+	int max1 = -INF;
+        int by; bool flag;
+        FOR(i,0,n) FOR(j,0,n) cin >> a[i][j];
+        FOR(j,0,n) {
+            FOR(i,0,n) tmp[i] = 0;
+            FOR(k,j,n) {
+                by = 0; flag = 0;
+                FOR(i,0,n) tmp[i] += a[i][k];
+                FOR(i,0,n) { if(tmp[i] >= 0) { flag = 1; break; } }
+                if(flag) {
+                    FOR(i,0,n) {
+                        by+=tmp[i]; if(by < 0) by = 0;
+                        max1 = max(max1 , by);
+                    }
+                }
+                else FOR(i,0,n) max1 = max(max1 , tmp[i]);
+            }
+        }
+        cout << max1 << endl;
+
+
+5 ->	[ Is there subarray with sum of k ]					complexity - O(n) / O(nlogn) using maps
+
+	unordered_set < int > ust;						
+	int cnt = 0;								
+	bool flag = 0;
+	FOR(i,0,n) {
+		cnt += a[i];
+		ust.insert(cnt);
+		trace(cnt , cnt-k);
+		if(ust.find(cnt-k)!=ust.end()) { flag = 1; break; }
+	}
+	if(flag) cout << "YES" << endl;
+	else cout << "NO" << endl;
+
+
+6 -> 	[ Isthere a subarray with sum divisible by k ]				complexity - O(n)
+	-> variation of "Is there subarray with sum of k"
+     	-> for this store the remainders rather that cumulative sums 
+
+
+7 ->	[ Is there a subarray with sum closest to k ]				complexity - O(nlogn)
+	-> find all cumulative prefix sum p[i]
+	-> sort them
+	-> Now find the sum closest to k .
+
+
+8 ->	lexographical toposort 
+			http://www.spoj.com/problems/TOPOSORT/	

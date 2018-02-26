@@ -1,0 +1,38 @@
+It completely depends on how knowledgeable you are.. If I may suggest you a project.. It may look silly to you or a big load of heavy task in front of you just for a mini project if you are not clear about anything.
+
+First know your ups and downs. On which field you are strong on.
+
+Second calculate how much time you can spend on it.
+
+
+Third clearly understand the requirements and get into it. Do not fuzz up in the end. Setup clear goals
+
+Work hard to complete it. If you are struck somewhere there are hell lot of people to help you with. Your friends,teachers, stack overflow and GOOGLE.
+don't try to copy any codes. Jus take the overall idea and work on it. After all you are doing it for learning purpose
+
+And lastly if you are taking up a project. You shouldn't leave it in half way that's more important.
+
+Assuming that you are a beginner and have some knowledge on coding, I LL suggest you few
+
+Do a shopping website a full functional with Java j2ee patterns if u can. And make the website responsive
+
+Try doing a snake and ladder game with C graphics. (if u don't know C graphics learn it. Belive me the understandings from it may help big in your future) and why I am suggesting you snake and ladder is.. You might have to work on your math's and logical part for drawing the snake and ladder dynamically.
+
+Try taking up a college project something that your college might need to do automation.
+
+If you would lik to have a steep learning curve. Try creating something like artificial intelligence with open nlp and open cyc.
+
+Try doing mobile applications which ever is your favorite platform.
+
+Create a desktop application in Java swing or using c# and implement a business logic to it.
+
+Or if you are smart enough to get a project from any small companies or shops through your networks. You get the logic from them and also you get money for it after completing your product. That's a double dhamaka, a project to your resume and money to your pocket.
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+

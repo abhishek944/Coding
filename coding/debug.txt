@@ -1,0 +1,50 @@
+1. Display documentation for the active window. 	
+	F1
+2. Display a system menu for the application window. 	ALT+SPACEBAR
+3. Add and remove breakpoints on the current lines. 	
+	F9
+4. Clear all breakpoints. 	
+	CTRL+SHIFT+F9
+5. Disable breakpoint. 	
+	CTRL+F9
+6. Display Auto window and move cursor into it. 	
+	CTRL+ALT+A
+7. Display Breakpoints dialog box. 	
+	CTRL+B
+8. Display Call Stack window and move cursor into it. 	
+	CTRL+ALT+C
+9. Display Immediate window and move cursor into it. Not available if you are in the Text Editor window. 	
+	CTRL+ALT+I
+10. Display Locals window and move cursor into it. 	
+	CTRL+ALT+L
+11. Display Running Document window and move cursor into it. 	CTRL+ALT+R
+12. Adds a watch on the currently selected word. 	
+	SHIFT+F9
+13. Display the next statement. 	
+	ALT+* on the NUM pad
+14. Display the shortcut menu. 	
+	SHIFT+F10
+15. Display Threads window and move cursor into it. 	
+	CTRL+ALT+H
+16. Display Watch window and move cursor into it. 	
+	CTRL+ALT+W
+17. End debugging session. 	
+	SHIFT+F5
+18. Execute code one statement at a time, following execution into function calls (Step Into). 	
+	F11
+19. Execute the next line of code but not follow execution through any function calls (Step Over). 	
+	F10
+20. Execute the remaining lines of a function in which the current execution point lies (Step Out). 	
+	SHIFT+F11
+21. Restart a debugging session. 	
+	CTRL+SHIFT+F5
+22. Resume execution of your code from the current statement to the selected statement (Run to Cursor). 	
+	CTRL+F10
+23. Run the application.. 	
+	F5
+24. Run the code without invoking the debugger (Start without Debugging). 	
+	CTRL+F5
+25. Set the next statement. 	
+	CTRL+SHIFT+F10
+26. Stop execution (Break). 	
+	CTRL+BREAK

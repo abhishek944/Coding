@@ -1,0 +1,37 @@
+1)
+	100 : 3n +1 problem
+		if(num & 1) num= num*3 + 1;
+		else num/=2;
+2)
+	102 : ecological bin 
+		while(next_permutation(s.begin(),s.end()) { cout << s << end; }
+3)
+	136 : ugly numbers
+		-> use long double for long long int multiplications
+			it can take upto 10^300
+		-> for(int i=1;dp[i-1]<=lmt;i++) dp[i] = dp[i-1] * n;
+4)
+	113 : Power Of Cryptography
+		-> for rounding use cout << fixed << setprecision(n);
+		-> trunc ( it rounds values toward 0)
+		-> floor ( it rounds to the largest number which is not greater than original number )
+		-> round ( nearest point integral )
+		
+		value   round   floor   ceil    trunc             cout << fixed << setprecision(0)
+		-----   -----   -----   ----    -----             --------------------------------
+		2.3     2.0     2.0     3.0     2.0			follows ROUND
+		3.8     4.0     3.0     4.0     3.0
+		5.5     6.0     5.0     6.0     5.0
+		-2.3    -2.0    -3.0    -2.0    -2.0
+		-3.8    -4.0    -4.0    -3.0    -3.0
+		-5.5    -6.0    -6.0    -5.0    -5.0
+5)
+	108 : Max sub-rectangle sum
+		-> use kadane algorithm
+		-> take (k = 0 to n horizontally ) where (j = k to n horizontally) && (i running from 0 to n vertically)
+		-> take cumulative sums for columns along with i 
+		-> perform kadane algorithm on the vertical arrays
+		-> print max
+		-> there are many variations
+
+6)
