@@ -1,48 +1,53 @@
-// BASIC
-
-// all are 0 based
-
-1. binary_search :
-			a) if val found : return pos
-			b) else return -1
-
-2. lower_bound :
-			a) if val found : return lower_pos
-			b) else return upper_pos
-
-3. upper_bound :
-			a) if val found or not found : return upper_pos
-
-positions -> 0 , 1 , 2 , 3 , . . . .  n
-
-eg : lo = 0 , hi = n , req = m
-
+/*
+ input index = [0, n - 1]
+ returns index = [-1, n - 1]
+ If value is found -> return position
+ if value is !found -> return -1
+*/
 int Bsearch(int lo,int hi,int req) {
-	int mid;
-	while(lo <= hi) {
-    	mid = lo + ((hi-lo)>>1);
-        if(a[mid-1]==req) return mid-1;
-        if(a[mid-1] > req) hi = mid-1;
+    int mid;
+    while(lo <= hi) {
+        mid = lo + ((hi-lo)>>1);
+        if(a[mid]==req) return mid;
+        if(a[mid] > req) hi = mid-1;
         else lo = mid+1;
     } return -1;
 }
 
-int UpperSearch(int lo,int hi,int req) {
-	int mid;
-	while(lo <= hi) {
-    	mid = lo + ((hi-lo) >> 1);
-        if(a[mid-1] <= req) lo = mid + 1;
+/*
+ input index = [0, n - 1]
+ returns index = [0, n]
+ If value is found -> return pair < 1, upper position of required value >
+ If value is !found -> return pair < 0, lower position of next highest value >
+*/
+pair < int, int > UpperSearch(int lo,int hi,int req) {
+    int mid;
+    while(lo <= hi) {
+        mid = lo + ((hi-lo) >> 1);
+        if(a[mid] <= req) lo = mid + 1;
         else hi = mid - 1;
-   	} return hi
+    }
+    if (hi == -1) return {0, hi + 1};
+    else if (a[hi] == req) return {1, hi};
+    else return {0, hi + 1};
 }
 
-int LowerSearch(int lo,int hi,int req)  {
-	int mid;
-	while(lo <= hi) {
-    	mid = lo + ((hi - lo) >> 1);
-        if(a[mid-1] >= req) hi = mid - 1;
+/*
+ input index = [0, n - 1]
+ returns index = [0, n]
+ If value is found -> returns pair < 1, lower position of required value >
+ If value is !found -> returns pair < 0, lower position of next highest value >
+*/
+pair < int , int > LowerSearch(int lo, int hi, int req) {
+    int mid; int local_n = hi;
+    while(lo <= hi) {
+        mid = lo + ((hi - lo) >> 1);
+        if(a[mid] >= req) hi = mid - 1;
         else lo = mid + 1;
-   	} return hi
+    }
+    if (lo == local_n + 1) return {0, lo};
+    else if (a[lo] == req) return {1, lo};
+    else return {0, lo};
 }
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
